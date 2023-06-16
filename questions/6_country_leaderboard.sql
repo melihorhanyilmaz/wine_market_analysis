@@ -13,7 +13,7 @@ ON regions.country_code = countries.code
 INNER JOIN wines
 ON regions.id = wines.region_id
 GROUP BY countries_name
-ORDER BY average_ratings_wines DESC;
+ORDER BY average_ratings_wines DESC, users_count DESC;
 
 --vintages
 SELECT 

@@ -1,12 +1,12 @@
 -- We would like to give a price to the best winery, which one should we choose and why?
 
-SELECT wineries.id as wineries_id, wineries.name as wineries_name, wines.ratings_average, SUM(ratings_count), SUM(user_structure_count)
+SELECT wineries.name as wineries_name, wines.ratings_average, SUM(ratings_count),COUNT(wines.name), SUM(ratings_count)/COUNT(wines.name) as ratings_count_per_wine
 FROM wines
 INNER JOIN wineries 
 ON wines.winery_id = wineries.id
 WHERE (ratings_count > (SELECT AVG(ratings_count) FROM wines))
 GROUP BY wineries.name
-ORDER BY ratings_average DESC, SUM(ratings_count) DESC
+ORDER BY ratings_count_per_wine DESC, SUM(ratings_count) DESC
 LIMIT 20;
 
 -- First, I grouped the wineries. As in the first question, I sorted first by their ratings_average and then by the sum of their ratings_counts. Finally, I added the sum of user_structure_counts to the table.

@@ -31,7 +31,7 @@ HAVING
     ABS(ROUND(AVG(intensity),2) - 4.59) <= 0.25 AND
     ABS(ROUND(AVG(sweetness),2) - 1.7) <= 0.25 AND
     ABS(ROUND(AVG(tannin),2) - 3.39) <= 0.25
-ORDER BY ratings_average DESC
+ORDER BY ratings_average DESC, ratings_count DESC
 LIMIT 5;
 
 -- First, I averaged Cabarnet's properties such as acidity, intensity, sweetness, tannin. Then I found other wines with 0.25 range. However, since some of them have low user_structure_counts, I decided to make it at least greater than 100. Then I ranked them according to ratings_average.
